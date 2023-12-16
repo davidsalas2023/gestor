@@ -1,17 +1,22 @@
 
+from .forms import FormEstacionamiento,FormFiltroEstacionamiento
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Usuario
+from .models import Usuario,Estacionamiento
 import random
 import string
+from xhtml2pdf import pisa
+from django.contrib import messages
+from django.template.loader import get_template
+import xlwt
+from io import BytesIO
 
 
-#########################################
 
 def generar_token(length=10):
 
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
-#Ingreso usuarios######################################################
 
 def signup(request):
     if request.method == 'POST':
@@ -45,27 +50,80 @@ def login(request):
                 return redirect('administracion', token=token)
 
     return render(request, 'registration/Login.html')
-##############################################################
+def eliminarautosf(request,patente):
+    
+    producto = Estacionamiento.objects.get(patente=patente)
+    producto.delete()
+    
+    messages.success(request,'Eliminado')
+    return redirect('lista',generar_token())
+
+
+
+def estacionamiento(request,token):
+    form = FormEstacionamiento()
+    if request.method == 'POST':
+        form = FormEstacionamiento(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Auto agregado')
+
+    data = {'form':form,'titulo':'Ingresar Autos'}
+    return render(request,'Estacionamiento/Estacionamiento.html',data)
+
+def listaautos(request, token):
+    form = FormFiltroEstacionamiento()
+
+    if request.method == 'POST':
+        form = FormFiltroEstacionamiento(request.POST)
+        
+        if form.is_valid():
+            patente = form.cleaned_data.get('patente', '')
+
+            lista_autos = Estacionamiento.objects.all()
+            if patente:
+                lista_autos = lista_autos.filter(patente__icontains=patente)
+
+            data = {'form': form, 'patente': patente, 'Estacionaminto': lista_autos}
+            return render(request, 'Estacionamiento/Datos.html', data)
+
+    data = {'form': form, 'Estacionaminto': None}
+    return render(request, 'Estacionamiento/Datos.html', data)
+
+
+
+    
+def editarautosf(request,patente):
+    per = Estacionamiento.objects.get(patente=patente)
+    form = FormEstacionamiento(instance=per)
+    if request.method == 'POST':
+        form = FormEstacionamiento(request.POST,instance=per)
+        if form.is_valid():
+            form.save()
+            return redirect('lista', generar_token())
+    data = {'form':form,'titulo':'Modificar Registro'}
+    return render (request,'Estacionamiento/Estacionamiento.html',data)
 
 
 
 
 
-#Usuarios#####################################################
-
-def admin(request, token):
-
-    return render(request, 'Admin/Admin.html')
 
 
 
-def administracion(request , token):
-
-    return render(request, 'Administracion/Administration.html')
 
 
 
-def estacionamiento(request, token):
 
-    return render(request, 'Estacionamiento/Estacionamiento.html')
-#######################################################################
+
+
+
+
+
+
+
+
+
+
+
+

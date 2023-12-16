@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+    <style>
+
+body {
+            overflow-x: hidden;
+            overflow-y: hidden;
+            margin: 0;
+        }
+
+        .site-navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333; /* Change this to your desired background color */
+            z-index: 1000; /* Ensure it's above other elements */
+        }
+
+        .site-logo {
+            /* Adjust the logo's style as needed */
+            padding: 10px; /* Add spacing if necessary */
+        }
+       </style>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -16,12 +37,50 @@
         }
         .form-container {
             background-color: rgba(255, 255, 255, 0.8); 
-            padding: 20px;
-            border-radius: 10px;
-            width: 400px;
+            margin: 400px;
+
+
+            
         }
     </style>
 </head>
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+
+
+  <header class="site-navbar site-navbar-target py-4 bg-dark" role="banner">
+
+
+
+
+          <div class="site-logo">
+            <!--NOMBRE Y LOGO-->
+            <a href="/"><img src="/static/images/logo1.jpg"  width="150" height="150" href="/" ></a>
+
+            
+          </div>
+        </div>
+
+        <div class="col-9  text-right">
+          
+
+
+
+
+        
+        </div>
+
+        
+      </div>
+    </div>
+</header>
 <body>
     <div class="container">
         <div class="form-container">
