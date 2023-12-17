@@ -168,7 +168,10 @@ label[for="id_contacto"] {
                                     {{ form.as_p }}
                                     <br>
                                     <input type="submit" value="Guardar" class="btn btn-primary">
-                                    <a href="Datos" class="btn btn-primary">Ver lista</a> 
+                                    {% if mostrar_boton %}
+                                    
+                                    <a href="Datos" class="btn btn-primary">Ver lista</a>
+                                {% endif %}
                                 </div>
                             </form>
                     

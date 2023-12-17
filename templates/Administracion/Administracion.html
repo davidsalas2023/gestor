@@ -129,7 +129,7 @@ label[for="id_contacto"] {
     <div class="contact__wrapper shadow-lg mt-n9">
         <div class="row no-gutters">
             <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
-                <h3 class="color--white mb-5">{{ titulo2 }}</h3>
+                <h3 class="color--white mb-5">{{ titulo1 }}</h3>
 
 
     
@@ -165,12 +165,12 @@ label[for="id_contacto"] {
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <div class="form-content">
-                                    {{ form2.as_p }}
+                                    {{ form.as_p }}
                                     <br>
                                     <input type="submit" value="Guardar" class="btn btn-primary">
                                     {% if mostrar_boton %}
                                     
-                                    <a href="Datos2" class="btn btn-primary">Ver lista</a>
+                                    <a href="Datos" class="btn btn-primary">Ver lista</a>
                                 {% endif %}
                                 </div>
                             </form>
