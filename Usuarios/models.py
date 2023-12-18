@@ -2,9 +2,9 @@ from django.db import models
 
 class Usuario(models.Model):
     TIPO_USUARIO_CHOICES = [
-    ('Visita', 'Visita'),
-    ('Residente', 'Residente'),
-    ('Externo', 'Externo'),
+    ('estacionamiento', 'estacionamiento'),
+    ('administracion', 'administracion'),
+    ('administrador', 'administrador'),
     ]
     username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=100)
