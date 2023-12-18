@@ -308,8 +308,8 @@ def editarpersonas(request,username):
         if form.is_valid():
             form.save()
             return redirect('pers', generar_token() )
-    data = {'form':form,'titulo1':'Modificar Personas'}
-    return render (request,'Signup/Datos.html',data)
+    data = {'form2':form,'titulo2':'Modificar Personas'}
+    return render (request,'Signup/Signup.html',data)
 
 
 def eliminarpersonas(request,username):

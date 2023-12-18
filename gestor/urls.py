@@ -31,9 +31,11 @@ urlpatterns = [
     path('eliminarautosf/<str:patente>',views.eliminarautosf),
     path('editarautosf/<str:patente>',views.editarautosf),
     path('admin/<str:token>/signup/', views.signup, name='signup'),
-    path('eliminarpersonasf/<str:username>',views.eliminarpersonas),
-    path('editarpersonasf/<str:username>',views.editarpersonas),
+    path('eliminarpersonas/<str:username>',views.eliminarpersonas),
+    path('editarpersonas/<str:username>',views.editarpersonas),
     path('admin/<str:token>/signup/Datos2', views.listaadpersonas, name='pers'),
+
+
     path('admin/<str:token>/Datos3', views.listasoli, name='cosa'),
     path('eliminarsol/<str:rut>',views.eliminarsoli),
 ]
